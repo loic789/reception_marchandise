@@ -1,0 +1,77 @@
+<ion-header no-border class="ion-no-border">
+  <ion-toolbar no-border class="ion-no-border" color="#153B50" style="background: #153B50;
+    color: white;">
+    <ion-title no-border class="ion-no-border">
+      <ion-icon name="information-circle-outline"></ion-icon> Détails de l'Article
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar no-border class="ion-no-border" color="#307278" style="background-color: #307278;color: white;">
+    <ion-title no-border class="ion-no-border">
+      <ion-icon name="airplane-outline"></ion-icon> {{bc.COFOU}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="#CC998D" no-border class="ion-no-border" style="background: #CC998D;
+    color: white;">
+    <ion-title no-border class="ion-no-border">
+      <ion-icon name="document-text-outline"></ion-icon> {{detailBc.ART}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="stacked">Bon livraison</ion-label>
+      <ion-input required [(ngModel)]="detailBc.BL"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Quantité recus</ion-label>
+      <ion-input type="number" required [(ngModel)]="detailBc.QTE"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Quantité Livrée</ion-label>
+      <ion-input readonly type="number" [(ngModel)]="detailBc.QTELIVR" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Quantité Restante</ion-label>
+      <ion-input readonly type="number" [value]="detailBc.QTEREST" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Délai</ion-label>
+      <ion-input readonly type="text" required [(ngModel)]="detailBc.DELAI"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label readonly position="stacked">Observations</ion-label>
+      <ion-textarea required [(ngModel)]="detailBc.OBS"></ion-textarea>
+    </ion-item>
+
+  </div>
+
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <ion-text class="block">Vous allez réceptionner <ion-text color="success"> ‎ {{detailBc.QTE}}</ion-text>‎
+        {{detailBc.ART}}‎ avec une livraison attendue de <ion-text color="dark">‎
+          {{detailBc.QTEREST}}</ion-text></ion-text>
+      <ion-toolbar>
+        <ion-button (click)="onFormSubmit()" id="open-toast" expand="block" color="secondary"
+          type="submit">Valider</ion-button>
+        <ion-toast trigger="open-toast" message="Réception reussie" color="success" [duration]="5000"></ion-toast>
+      </ion-toolbar>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+
+
+
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ion-button id="open-modal" expand="block" color="secondary" type="submit">Soumettre</ion-button>
+
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recherche de Commande</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Numéro de Commande</ion-label>
+    <ion-input [(ngModel)]="orderCode" ></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="searchOrder()">Rechercher</ion-button>
+
+  <div *ngIf="orderDetails">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Détails de la commande</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Code:</strong> {{ orderDetails.code }}</p>
+        <p><strong>Date:</strong> {{ orderDetails.date }}</p>
+        <p><strong>Status:</strong> {{ orderDetails.status }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Articles</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngFor="let item of orderDetails.items">
+          <ion-item (click)="navigatePageValideBc(item.LBCLEUNIK)"  >
+            {{ item.name }} - Quantité: {{ item.quantity }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-toast trigger="open-toast" message="Réception reussie" color="success" [duration]="5000"></ion-toast>
+
+</ion-content>
+
+
